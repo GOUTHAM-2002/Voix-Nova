@@ -9,10 +9,15 @@ from rest_framework.decorators import api_view
 import json
 from django.views.decorators.csrf import csrf_exempt
 
+from .utils import find_similar_images
+
 ai = GeminiClient()
 
 
 def home(request):
+    similar_products = find_similar_images('core/product_images','core/product_images/product_1_image1.jpg')
+    print(len(similar_products))
+    print(similar_products)
     return render(request, "search.html")
 
 
